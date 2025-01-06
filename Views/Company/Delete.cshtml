@@ -1,0 +1,56 @@
+﻿@model WarsztatMVC.Models.CompanyModel
+
+@{
+    ViewData["Title"] = "Usuń firmę";
+}
+
+<div class="delete-full">
+    <h3>Czy na pewno chcesz usunąć tę firmę?</h3>
+    <div class="info-full">
+        <table class="info">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.nazwa_firma)</th>
+                <td>@Html.DisplayFor(model => model.nazwa_firma)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.miasto)</th>
+                <td>@Html.DisplayFor(model => model.miasto)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.kod_pocztowy)</th>
+                <td>@Html.DisplayFor(model => model.kod_pocztowy)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ulica)</th>
+                <td>@Html.DisplayFor(model => model.ulica)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.numer_domu)</th>
+                <td>@Html.DisplayFor(model => model.numer_domu)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.numer_lokalu)</th>
+                <td>@Html.DisplayFor(model => model.numer_lokalu)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.nip)</th>
+                <td>@Html.DisplayFor(model => model.nip)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.regon)</th>
+                <td>@Html.DisplayFor(model => model.regon)</td>
+            </tr>
+        </table>
+
+        <div class="delete-form">
+            <form asp-action="Delete">
+                <input type="submit" value="Usuń" class="btn btn-danger" />
+            </form>
+        </div>
+        <div class="button-free">
+            <div class="button-back">
+                <a asp-action="Index">Powrót do listy firm</a>
+            </div>
+        </div>
+    </div>
+</div>

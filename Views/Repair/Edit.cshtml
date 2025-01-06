@@ -1,0 +1,90 @@
+﻿@using WarsztatMVC.Models
+@model RepairModel
+
+@{
+    ViewData["Title"] = "Edytuj naprawę";
+}
+
+<div class="edit-a-form-full">
+    <div class="edit-a-form">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="FixViewModel.First().Id" class="control-label" type="hidden" />
+            <div class="form-group">
+                <label asp-for="FixViewModel.First().Id_czynnosc" class="control-label">Czynność</label>
+                <input type="text" id="searchCzynnosc" placeholder="Wyszukaj czynność" class="form-control" />
+                @Html.DropDownListFor(model => model.FixViewModel.First().Id_czynnosc, new SelectList(Model.ActionViewModel, "Id_czynnosc", "Nazwa"), "Wybierz czynność", new { @class = "form-control", id = "Id_czynnosc" })
+                <span asp-validation-for="FixViewModel.First().Id_czynnosc" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FixViewModel.First().Id_czesc" class="control-label">Część</label>
+                <input type="text" id="searchCzesc" placeholder="Wyszukaj część" class="form-control" />
+                @Html.DropDownListFor(model => model.FixViewModel.First().Id_czesc, new SelectList(Model.PartViewModel, "Id_czesc", "Czesc"), "Wybierz część", new { @class = "form-control", id = "Id_czesc" })
+                <span asp-validation-for="FixViewModel.First().Id_czesc" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FixViewModel.First().Uwagi" class="control-label">Uwagi</label>
+                <textarea asp-for="FixViewModel.First().Uwagi" class="form-control"></textarea>
+                <span asp-validation-for="FixViewModel.First().Uwagi" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Edytuj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    <div class="button-free">
+        <div class="button-back">
+            <a asp-controller="Appointment" asp-action="Index">Powrót do listy wizyt</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var czynnoscSelect = document.getElementById("Id_czynnosc");
+            var searchInputCzynnosc = document.getElementById("searchCzynnosc");
+
+            searchInputCzynnosc.addEventListener("input", function () {
+                var searchText = searchInputCzynnosc.value.toLowerCase();
+
+                for (var i = 0; i < czynnoscSelect.options.length; i++) {
+                    var option = czynnoscSelect.options[i];
+                    var optionText = option.text.toLowerCase();
+
+                    if (optionText.includes(searchText)) {
+                        option.style.display = "";
+                    } else {
+                        option.style.display = "none";
+                    }
+                }
+            });
+
+            var czescSelect = document.getElementById("Id_czesc");
+            var searchInputCzesc = document.getElementById("searchCzesc");
+
+            searchInputCzesc.addEventListener("input", function () {
+                var searchText = searchInputCzesc.value.toLowerCase();
+
+                for (var i = 0; i < czescSelect.options.length; i++) {
+                    var option = czescSelect.options[i];
+                    var optionText = option.text.toLowerCase();
+
+                    if (optionText.includes(searchText)) {
+                        option.style.display = "";
+                    } else {
+                        option.style.display = "none";
+                    }
+                }
+            });
+        });
+    </script>
+}

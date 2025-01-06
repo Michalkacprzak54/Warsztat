@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WarsztatMVC.Models.WorkerModel>
+
+@{
+    ViewData["Title"] = "Pracownicy";
+}
+
+@if (ViewBag.WorkerSuccess != null)
+{
+    <div class="alert-green">
+        @ViewBag.WorkerSuccess
+    </div>
+}
+
+@if (ViewBag.WorkerError != null)
+{
+    <div class="alert-red">
+        @ViewBag.WorkerError
+    </div>
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="table-form">
+        <div class="button-free">
+            <div class="button-add">
+                <a asp-action="Create">Dodaj pracownika</a>
+            </div>
+        </div>
+    <div class="table-form-full">
+        <table class="table">
+            <tr>
+                <th>
+                    Numer
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pracownik_imie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pracownik_nazwisko)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pracownik_nr_telefonu)
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th>
+                    Akcje
+                </th>
+            </tr>
+            @{
+                int numerPorzadkowy = 1;
+            }
+            @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                                @numerPorzadkowy
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pracownik_imie)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pracownik_nazwisko)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pracownik_nr_telefonu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pracownik_email)
+                        </td>
+                    <td>
+                        <div class="buttons">
+                            <div class="add">
+                                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_pracownik })
+                                </div>
+                                <div class="delete">
+                                @Html.ActionLink("Usuń", "Delete", new { id = item.Id_pracownik })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                     numerPorzadkowy++;
+                }
+
+            </table>
+        </div>
+    </div>
+
+}
+else
+{
+    <p>Brak pracowników do wyświetlenia.</p>
+}

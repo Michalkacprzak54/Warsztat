@@ -1,0 +1,85 @@
+﻿@model IEnumerable<WarsztatMVC.Models.VisitModel>
+@{
+    ViewData["Title"] = "Strona główna";
+}
+
+<div class="table-full">
+    <table class="table">
+
+        <tr>
+            <th>
+                Numer
+            </th>
+            <th>
+                Samochód
+            </th>
+            <th>
+                Numer rejestracyjny
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Klient)
+            </th>
+            <th>
+                Numer telefonu
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Firma)
+            </th>
+
+            <th>
+                Numer telefonu
+            </th>
+            <th>
+                Data rozpoczęcia
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis_klienta)
+            </th>
+            <th>Akcje</th>
+        </tr>
+
+        @{
+            int numerPorzadkowy = 1;
+        }
+        @foreach (var item in Model.Where(m => !m.Czy_zakonczona.GetValueOrDefault()))
+        {
+            <tr>
+                <td>
+                    @numerPorzadkowy
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Samochod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nr_rejestracyjny)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Klient)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numer_telefonu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Firma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numer_telefonu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_start)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Opis_klienta)
+                </td>
+                <td>
+                    <div class="details">
+                        @Html.ActionLink("Szczegóły", "Details", "Appointment", new { id = item.Id_visit })
+                    </div>
+                </td>
+            </tr>
+
+            numerPorzadkowy++;
+        }
+
+    </table>
+</div>

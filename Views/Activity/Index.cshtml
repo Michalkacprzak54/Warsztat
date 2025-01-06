@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WarsztatMVC.Models.ActivityModel>
+
+@{
+    ViewData["Title"] = "Czynności";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ActivitySuccess))
+{
+    <div class="alert-green">
+        @ViewBag.ActivitySuccess
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ActivityError))
+{
+    <div class="alert-red">
+        @ViewBag.ActivityError
+    </div>
+}
+<div class="table-form">
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Create">Dodaj</a>
+        </div>
+    </div>
+    <div class="table-form-full">
+        <table class="table">
+            <tr>
+                <th>
+                    Numer
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nazwa)
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Roboczogodziny)
+                </th>
+                <th>
+                    Akcje
+                </th>
+            </tr>
+            @{
+                int numerPorzadkowy = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @numerPorzadkowy
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena_netto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Roboczogodziny)
+                    </td>
+                    <td>
+                        <div class="buttons">
+                            <div class="add">
+                                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_czynnosc })
+                            </div>
+                            @if (!item.IsLinkedToRepair ?? false)
+                            {
+                                <div class="delete">
+                                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id_czynnosc })
+                                </div>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                numerPorzadkowy++;
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model WarsztatMVC.Models.VisitModel
+
+@{
+    ViewData["Title"] = "Zakończ wizytę";
+}
+
+<div class="end-a-form-full">
+    <div class="end-a-form">
+        @using (Html.BeginForm("EndVisit", "Appointment", FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.Id_visit)
+            @Html.HiddenFor(model => model.Nr_rejestracyjny)
+            @Html.HiddenFor(model => model.nip)
+            @Html.HiddenFor(model => model.Numer_telefonu)
+            @Html.HiddenFor(model => model.Przebieg_start)
+            @Html.HiddenFor(model => model.Data_start)
+            @Html.HiddenFor(model => model.Paliwo_start)
+            @Html.HiddenFor(model => model.Opis_klienta)
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Data_koniec, "Data zakończenia")
+                @Html.TextBoxFor(model => model.Data_koniec, new { @class = "form-control", type = "datetime-local" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Zakończ wizytę" class="btn btn-primary" />
+            </div>
+        }
+    </div>
+</div>
+

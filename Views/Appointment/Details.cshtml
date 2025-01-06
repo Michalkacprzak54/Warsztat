@@ -1,0 +1,175 @@
+﻿@using WarsztatMVC.Models;
+@model AppointmentModel
+
+@{
+    ViewData["Title"] = "Szczegóły wizyty";
+}
+
+<div class="table-full">
+    <div class="button-free">
+        <div class="button-back">
+            <a asp-action="Index">Powrót do listy wizyt</a>
+        </div>
+    </div>
+
+    <table class="table-details">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Samochod)
+            </th>
+            <th>
+                Numer rejestracyjny
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Klient)
+            </th>
+            <th>
+                Numer telefonu
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Firma)
+            </th>
+            <th>
+                Numer NIP
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Pracownik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Przebieg_start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Data_start)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Data_koniec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Paliwo_start)
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VisitViewModel.First().Opis_klienta)
+            </th>
+        </tr>
+        <tr>
+            @* <td>
+            @Html.DisplayFor(model => model.VisitViewModel.First().Id_visit)
+            </td> *@
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Samochod)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Nr_rejestracyjny)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Klient)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Numer_telefonu)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Firma)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().nip)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Pracownik)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Przebieg_start)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Data_start)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Data_koniec)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Paliwo_start)
+            </td>
+            <td>
+                @if (Model.VisitViewModel.First().Czy_zakonczona.GetValueOrDefault())
+                {
+                    <text>Zakończona</text>
+                }
+                else
+                {
+                    <text>W toku</text>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.VisitViewModel.First().Opis_klienta)
+            </td>
+        </tr>
+    </table>
+
+    <div class="button-free">
+        <div class="button-add">
+            @Html.ActionLink("Dodaj naprawę", "Create", "Repair", new { id = Model.VisitViewModel.First().Id_visit }, new { @class = "btn btn-primary btn-block" })
+        </div>
+    </div>
+
+    @if (Model.DataRepairViewModel != null && Model.DataRepairViewModel.Any())
+    {
+
+        <table class="table-details">
+            <tr>
+                <th>Numer</th>
+                <th>@Html.DisplayNameFor(model => model.DataRepairViewModel.First().Czynnosc)</th>
+                <th>@Html.DisplayNameFor(model => model.DataRepairViewModel.First().Czesc)</th>
+                <th>@Html.DisplayNameFor(model => model.DataRepairViewModel.First().Pracownik)</th>
+                <th>@Html.DisplayNameFor(model => model.DataRepairViewModel.First().Uwagi)</th>
+                <th>Akcje</th>
+            </tr>
+            @{
+                int numerPorzadkowy = 1;
+            }
+            @foreach (var item in Model.DataRepairViewModel)
+            {
+                <tr>
+                    <td>@numerPorzadkowy</td>
+                    <td>@Html.DisplayFor(modelItem => item.Czynnosc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Czesc)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Pracownik)</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(item.Uwagi))
+                        {
+                            <text>Brak</text>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Uwagi)
+                        }
+                    </td>
+                    <td>
+                        @if (Model.VisitViewModel.First().Czy_zakonczona == false || Model.VisitViewModel.First().Czy_zakonczona == null)
+                        {
+                            <div class="buttons">
+                                <div class="edit">
+                                    @Html.ActionLink("Edytuj", "Edit", "Repair", new { id = item.Id_naprawa }, new { @class = "btn btn-primary btn-block" })
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <text>Brak</text>
+                        }
+
+
+
+                    </td>
+                </tr>
+                numerPorzadkowy++;
+            }
+        </table>
+
+    }
+    else
+    {
+        <h1>Brak napraw</h1>
+    }
+</div>

@@ -1,0 +1,870 @@
+/*reset*/
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+/*body*/
+body {
+    font-family: Noto Sans, noto, Arial, Open Sans, Helvetica, sans-serif;
+    background-color: #fbfbfb;
+}
+
+.text-danger {
+    color: #DF2E38;
+    margin: 10px;
+}
+/*nawigacja*/
+nav {
+    background-color: #fbfbfb;
+    color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #0079FF;
+}
+
+    nav .left {
+        margin-right: 40px;
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        nav ul li {
+            display: inline;
+            font-size: 20px;
+            margin-right: 30px;
+        }
+
+    nav a {
+        text-decoration: none;
+        color: black;
+    }
+
+.login-button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #0079FF;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/*stopka*/
+footer {
+    background-color: #fbfbfb;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #0079FF;
+}
+
+    footer .mid {
+        text-align: center;
+        margin: 10px;
+    }
+/*login*/
+.login-form {
+    background-color: #fbfbfb;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+    .login-form form {
+        background-color: #fbfbfb;
+        text-align: center;
+        color: black;
+        justify-content: center;
+        padding: 20px;
+        border: 2px solid #0079FF;
+        border-radius: 10px;
+        width: 500px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .login-form form button {
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: #0079FF;
+            width: 120px;
+            margin: 10px;
+            height: 40px;
+            border: 1px solid #0079FF;
+        }
+
+        .login-form form input {
+            height: 35px;
+            width: 300px;
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: none;
+            margin-top: 10px;
+            text-align: center;
+            border: 2px solid #0079FF;
+        }
+
+    .login-form label {
+        padding-top: 10px;
+        font-weight: bold;
+        width: 300px;
+        text-align: left;
+    }
+/*alert green*/
+.alert-green {
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #65B741;
+    color: #65B741;
+    margin: 20px;
+    padding: 10px;
+}
+/*alert red*/
+.alert-red {
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #DF2E38;
+    color: #DF2E38;
+    margin: 20px;
+    padding: 10px;
+}
+/*main*/
+.table-full {
+    min-height: 820px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+}
+
+    .table-full .table {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+        .table-full .table th {
+            font-weight: bold;
+            background-color: #0079FF;
+            border-radius: 5px;
+            color: black;
+        }
+
+        .table-full .table th, .table td {
+            padding: 15px;
+            border-bottom: 2px solid black;
+            border-radius: 5px;
+        }
+
+        .table-full .table tr:hover {
+            background-color: #78C1F3;
+            color: black;
+            border-radius: 5px;
+        }
+
+        .table-full .table a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .table-full .table .details {
+            padding: 10px 20px;
+            background-color: #0079FF;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .table-full .table .edit {
+            padding: 5px 10px;
+            background-color: #65B741;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+/*car client company*/
+.table-form {
+    display: flex;
+    min-height: 820px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.find {
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    width: 700px;
+    background-color: #fbfbfb;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+    .find form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .find form input {
+            font-size: 20px;
+            margin: 5px;
+            font-size: 20px;
+            height: 30px;
+            width: 500px;
+            text-align: center;
+            border-radius: 5px;
+            border: 2px solid #0079FF;
+            background-color: none;
+        }
+
+        .find form button {
+            font-size: 20px;
+            border-radius: 5px;
+            border: 0px;
+            margin-top: 20px;
+            background-color: #0079FF;
+            text-align: center;
+            width: 120px;
+            height: 40px;
+        }
+
+.button-free {
+    margin: 20px;
+}
+
+    .button-free .button-add {
+        font-size: 20px;
+        border-radius: 5px;
+        border: 0px;
+        background-color: #65B741;
+        text-align: center;
+        width: 500px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .button-free a {
+        text-decoration: none;
+        color: black;
+    }
+
+.table-form-full {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+}
+
+    .table-form-full .table {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .table-form-full .table th {
+            font-weight: bold;
+            background-color: #0079FF;
+            border-radius: 5px;
+            color: black;
+        }
+
+        .table-form-full .table th, .table td {
+            padding: 15px;
+            border-bottom: 2px solid black;
+            border-radius: 5px;
+        }
+
+        .table-form-full .table tr:hover {
+            background-color: #78C1F3;
+            color: black;
+            border-radius: 5px;
+        }
+
+        .table-form-full .table a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .table-form-full .table .details {
+            padding: 10px 20px;
+            background-color: #0079FF;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .table-form-full .table .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .table-form-full .table .buttons div {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+        .table-form-full .table .add {
+            padding: 10px 20px;
+            background-color: #FFB534;
+            color: #1f1f1f;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .table-form-full .table .delete {
+            padding: 10px 20px;
+            background-color: #DF2E38;
+            color: #1f1f1f;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+/*appointment*/
+.find-2 {
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    width: 700px;
+    background-color: #fbfbfb;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+    .find-2 form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .find-2 label {
+        width: 500px;
+        text-align: left;
+    }
+
+    .find-2 form input {
+        font-size: 20px;
+        margin: 5px;
+        font-size: 20px;
+        height: 30px;
+        width: 500px;
+        text-align: center;
+        border-radius: 5px;
+        border: 2px solid #0079FF;
+        background-color: none;
+    }
+
+    .find-2 form select {
+        margin: 5px;
+        font-size: 20px;
+        height: 36px;
+        width: 508px;
+        text-align: center;
+        border-radius: 5px;
+        border: 2px solid #0079FF;
+        background-color: none;
+    }
+
+    .find-2 form button {
+        font-size: 20px;
+        border-radius: 5px;
+        border: 0px;
+        margin-top: 20px;
+        background-color: #0079FF;
+        text-align: center;
+        width: 120px;
+        height: 40px;
+    }
+
+.table-form-full-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    width: 90%;
+}
+
+    .table-form-full-2 .table {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        .table-form-full-2 .table th {
+            font-weight: bold;
+            background-color: #0079FF;
+            border-radius: 5px;
+            color: black;
+        }
+
+        .table-form-full-2 .table th, .table td {
+            padding: 10px;
+            border-bottom: 2px solid black;
+            border-radius: 5px;
+        }
+
+        .table-form-full-2 .table tr:hover {
+            background-color: #78C1F3;
+            color: black;
+            border-radius: 5px;
+        }
+
+        .table-form-full-2 .table a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .table-form-full-2 .table .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .table-form-full-2 .table .buttons div {
+                margin-left: 3px;
+                margin-right: 3px;
+            }
+
+        .table-form-full-2 .table .details {
+            padding: 2px 5px;
+            height: 45px;
+            width: 75px;
+            background-color: #0079FF;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .table-form-full-2 .table .add {
+            padding: 2px 5px;
+            height: 45px;
+            width: 75px;
+            background-color: #65B741;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .table-form-full-2 .table .end {
+            padding: 2px 5px;
+            height: 45px;
+            width: 75px;
+            background-color: #DF2E38;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .table-form-full-2 .table .edit {
+            padding: 2px 5px;
+            height: 45px;
+            width: 75px;
+            background-color: #FFB534;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+/*create*/
+.button-free .button-back {
+    font-size: 20px;
+    border-radius: 5px;
+    border: 0px;
+    background-color: #0079FF;
+    text-align: center;
+    width: 500px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-a-form-full {
+    min-height: 820px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.create-a-form {
+    background-color: #fbfbfb;
+    text-align: center;
+    color: black;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    width: 500px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .create-a-form form div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .create-a-form form button {
+        font-size: 20px;
+        border-radius: 5px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        background-color: #0079FF;
+        width: 120px;
+        height: 40px;
+        border: 1px solid #0079FF;
+    }
+
+    .create-a-form input {
+        font-size: 20px;
+        height: 35px;
+        width: 300px;
+        border-radius: 5px;
+        background-color: none;
+        margin-top: 10px;
+        text-align: center;
+        border: 2px solid #0079FF;
+    }
+
+    .create-a-form select {
+        margin: 5px;
+        font-size: 20px;
+        height: 43px;
+        width: 308px;
+        text-align: center;
+        border-radius: 5px;
+        border: 2px solid #0079FF;
+        background-color: none;
+    }
+
+    .create-a-form textarea {
+        height: 35px;
+        width: 300px;
+        height: 100px;
+        border-radius: 5px;
+        background-color: none;
+        margin-top: 10px;
+        text-align: center;
+        border: 2px solid #0079FF;
+    }
+
+    .create-a-form input[type=submit] {
+        height: 40px;
+        width: 300px;
+        border-radius: 5px;
+        background-color: #0079FF;
+        margin-top: 20px;
+        text-align: center;
+        border: 2px solid #0079FF;
+        font-size: 20px;
+    }
+
+    .create-a-form label {
+        padding-top: 10px;
+        width: 300px;
+        text-align: left;
+    }
+/*edit*/
+.edit-a-form-full {
+    min-height: 820px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.edit-a-form {
+    background-color: #fbfbfb;
+    text-align: center;
+    color: black;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    width: 500px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .edit-a-form form div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .edit-a-form form button {
+        font-size: 20px;
+        border-radius: 5px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        background-color: #0079FF;
+        width: 120px;
+        height: 40px;
+        border: 1px solid #0079FF;
+    }
+
+    .edit-a-form input {
+        font-size: 20px;
+        height: 35px;
+        width: 400px;
+        border-radius: 5px;
+        background-color: none;
+        margin-top: 10px;
+        text-align: center;
+        border: 2px solid #0079FF;
+    }
+
+    .edit-a-form select {
+        margin: 5px;
+        font-size: 20px;
+        height: 43px;
+        width: 408px;
+        text-align: center;
+        border-radius: 5px;
+        border: 2px solid #0079FF;
+        background-color: none;
+    }
+
+    .edit-a-form textarea {
+        height: 35px;
+        width: 400px;
+        height: 100px;
+        border-radius: 5px;
+        background-color: none;
+        margin-top: 10px;
+        text-align: center;
+        border: 2px solid #0079FF;
+    }
+
+    .edit-a-form input[type=submit] {
+        height: 40px;
+        width: 400px;
+        border-radius: 5px;
+        background-color: #0079FF;
+        margin-top: 20px;
+        text-align: center;
+        border: 2px solid #0079FF;
+        font-size: 20px;
+    }
+
+    .edit-a-form label {
+        padding-top: 10px;
+        width: 400px;
+        text-align: left;
+    }
+/*end visit*/
+.end-a-form-full {
+    min-height: 820px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.end-a-form {
+    background-color: #fbfbfb;
+    text-align: center;
+    color: black;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid #0079FF;
+    border-radius: 10px;
+    width: 500px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .end-a-form form div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .end-a-form input {
+        font-size: 20px;
+        height: 35px;
+        width: 400px;
+        border-radius: 5px;
+        background-color: none;
+        margin-top: 10px;
+        text-align: center;
+        border: 2px solid #0079FF;
+    }
+
+        .end-a-form input[type=submit] {
+            height: 40px;
+            width: 400px;
+            border-radius: 5px;
+            background-color: #0079FF;
+            margin-top: 20px;
+            text-align: center;
+            border: 2px solid #0079FF;
+            font-size: 20px;
+        }
+
+    .end-a-form label {
+        padding-top: 10px;
+        width: 400px;
+        text-align: left;
+    }
+/*delete*/
+.delete-full {
+    min-height: 820px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+    .delete-full h3 {
+        color: #0079FF;
+    }
+
+    .delete-full .info-full {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+        .delete-full .info-full .info {
+            text-align: left;
+            margin: 20px;
+        }
+
+    .delete-full .info td {
+        text-align: right;
+    }
+
+    .delete-full input[type=submit] {
+        height: 40px;
+        width: 400px;
+        border-radius: 5px;
+        background-color: #0079FF;
+        text-align: center;
+        border: 2px solid #0079FF;
+        font-size: 20px;
+    }
+/*details*/
+.table-full .table-details {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+    .table-full .table-details th {
+        font-weight: bold;
+        background-color: #0079FF;
+        border-radius: 5px;
+        color: black;
+    }
+
+    .table-full .table-details th, .table-details td {
+        padding: 10px;
+        border-bottom: 2px solid black;
+        border-radius: 5px;
+    }
+
+    .table-full .table-details tr:hover {
+        background-color: #78C1F3;
+        color: black;
+        border-radius: 5px;
+    }
+
+    .table-full .table-details a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .table-full .table-details .edit {
+        padding: 2px 5px;
+        background-color: #FFB534;
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }

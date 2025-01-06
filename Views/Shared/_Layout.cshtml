@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Warsztat</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WarsztatMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <ul>
+                    <li class="nav-item">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Strona Główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Car" asp-action="Index">Samochody</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Klienci</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Index">Firmy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Appointment" asp-action="Index">Wizyty</a>
+                    </li> 
+                    @* <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Repair" asp-action="Index">Naprawy</a>
+                    </li> *@
+                </ul>
+            </div>
+            <div class="right">
+                <div class="login-button">
+                    @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieUserId"] != null)
+                    {
+                        <a class="login-button" asp-controller="WorkerLogin" asp-action="Logout">Wyloguj się</a>
+                    }
+                    else
+                    {
+                        <a class="login-button" asp-controller="WorkerLogin" asp-action="Index">Zaloguj się</a>
+                    }
+                </div>
+            </div>
+        </nav>
+
+        @if (@HttpContextAccessor?.HttpContext?.Request.Cookies["CookieIsAdmin"] == "True")
+        {
+            <!-- Drugi NavBar widoczny tylko dla administratorów -->
+            <nav class="secondary-navbar">
+                <div class="container">
+                    <ul class="secondary-nav-list">
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-controller="Worker" asp-action="Index">Pracownicy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-controller="Activity" asp-action="Index">Czynności</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-controller="Part" asp-action="Index">Części</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        }
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <div class="mid">
+            &copy; 2024 - WarsztatMVC @*-  <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

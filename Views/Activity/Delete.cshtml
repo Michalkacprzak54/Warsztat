@@ -1,0 +1,61 @@
+﻿@model WarsztatMVC.Models.ActivityModel
+
+@{
+    ViewData["Title"] = "Usuń czynność";
+}
+
+<div class="delete-full">
+    @if (Model.IsLinkedToRepair ?? false)
+    {
+        <div class="alert-red">
+            <p>Nie można usunąć tej czynności, ponieważ jest powiązana z naprawą.</p>
+        </div>
+        <div class="button-back">
+            <a asp-action="Index">Powrót do listy</a>
+        </div>
+    }
+    else
+    {
+        <h3>Czy na pewno chcesz usunąć tę czynność?</h3>
+        <div class="info-full">
+            <table class="info">
+                <tr>
+                    <th>
+                        Nazwa
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Nazwa)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Cena
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Cena_netto)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Roboczogodziny
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Roboczogodziny)
+                    </td>
+                </tr>
+            </table>
+
+            <div class="delete-form">
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id_czynnosc" />
+                    <input type="submit" value="Usuń" class="btn btn-danger" />
+                </form>
+            </div>
+            <div class="button-free">
+                <div class="button-back">
+                    <a asp-action="Index">Powrót</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

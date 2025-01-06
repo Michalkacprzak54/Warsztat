@@ -1,0 +1,49 @@
+﻿@model WarsztatMVC.Models.PartModel
+
+@{
+    ViewData["Title"] = "Usuń część";
+}
+
+<div class="delete-full">
+    <h3>Czy na pewno chcesz usunąć tę część?</h3>
+    <div class="info-full">
+        <table class="info">
+            <tr>
+                <th>ID</th>
+                <td>@Html.DisplayFor(model => model.Id_czesc)</td>
+            </tr>
+            <tr>
+                <th>Czynność</th>
+                <td>@Html.DisplayFor(model => model.Czynnosc)</td>
+            </tr>
+            <tr>
+                <th>Część</th>
+                <td>@Html.DisplayFor(model => model.Czesc)</td>
+            </tr>
+            <tr>
+                <th>Producent</th>
+                <td>@Html.DisplayFor(model => model.Producent)</td>
+            </tr>
+            <tr>
+                <th>Numer części</th>
+                <td>@Html.DisplayFor(model => model.Nr_czesc)</td>
+            </tr>
+            <tr>
+                <th>Cena</th>
+                <td>@Html.DisplayFor(model => model.Cena_netto)</td>
+            </tr>
+        </table>
+
+        <div class="delete-form">
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id_czesc" />
+                <input type="submit" value="Usuń" class="btn btn-danger" />
+            </form>
+        </div>
+        <div class="button-free">
+            <div class="button-back">
+                <a asp-action="Index">Powrót</a>
+            </div>
+        </div>
+    </div>
+</div>

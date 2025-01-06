@@ -1,0 +1,105 @@
+﻿@model WarsztatMVC.Models.PartModel
+
+@{
+    ViewData["Title"] = "Dodaj część";
+}
+
+<div class="create-a-form-full">
+    <div class="create-a-form">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id_czesc" class="form-control" hidden />
+
+            <div class="form-group">
+                <label asp-for="Czynnosc" class="control-label">Czynność</label>
+                <input type="text" id="searchCzynnosc" placeholder="Wyszukaj czynność" class="form-control" />
+                @Html.DropDownListFor(
+                         model => model.Czynnosc,
+                         new SelectList(ViewBag.CzynnosciList ?? new List<SelectListItem>()),
+                         "Wybierz czynność",
+                         new { @class = "form-control", id = "Czynnosc" }
+                         )
+                <span asp-validation-for="Czynnosc" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Czesc" class="control-label">Część</label>
+                <input asp-for="Czesc" class="form-control" />
+                <span asp-validation-for="Czesc" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Producent" class="control-label">Producent</label>
+                <input type="text" id="searchProducent" placeholder="Wyszukaj producenta" class="form-control" />
+                @Html.DropDownListFor(
+                         model => model.Producent,
+                         new SelectList(ViewBag.ProducentList ?? new List<SelectListItem>()),
+                         "Wybierz producenta",
+                         new { @class = "form-control", id = "Producent" }
+                         )
+                <span asp-validation-for="Producent" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Nr_czesc" class="control-label">Numer części</label>
+                <input asp-for="Nr_czesc" class="form-control" />
+                <span asp-validation-for="Nr_czesc" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Cena_netto" class="control-label">Cena netto</label>
+                <input asp-for="Cena_netto" class="form-control" />
+                <span asp-validation-for="Cena_netto" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="button-free">
+        <div class="button-back">
+            <a asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var czynnosciSelect = document.getElementById("Czynnosc");
+        var searchInputCzynnosc = document.getElementById("searchCzynnosc");
+
+        searchInputCzynnosc.addEventListener("input", function () {
+            var searchText = searchInputCzynnosc.value.toLowerCase();
+
+            for (var i = 0; i < czynnosciSelect.options.length; i++) {
+                var option = czynnosciSelect.options[i];
+                var optionText = option.text.toLowerCase();
+
+                if (optionText.includes(searchText)) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+
+        var producentSelect = document.getElementById("Producent");
+        var searchInputProducent = document.getElementById("searchProducent");
+
+        searchInputProducent.addEventListener("input", function () {
+            var searchText = searchInputProducent.value.toLowerCase();
+
+            for (var i = 0; i < producentSelect.options.length; i++) {
+                var option = producentSelect.options[i];
+                var optionText = option.text.toLowerCase();
+
+                if (optionText.includes(searchText)) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+    });
+</script>

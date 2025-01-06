@@ -1,0 +1,133 @@
+﻿@model IEnumerable<WarsztatMVC.Models.CarModel>
+
+@{
+    ViewData["Title"] = "Samochody";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.CarSuccess))
+{
+    <div class="alert-green">
+        @ViewBag.CarSuccess
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.CarError))
+{
+    <div class="alert-red">
+        @ViewBag.CarError
+    </div>
+}
+<div class="table-form">
+    <div class="find">
+        @using (Html.BeginForm("Index", "Car", FormMethod.Get))
+        {
+
+            @* <label>Wpisz numer telefonu</label> *@
+            @Html.TextBox("Marka", null, new { @class = "form-control", placeholder = "Wpisz makrę", autocomplete = "off" })
+            @Html.TextBox("Model", null, new { @class = "form-control", placeholder = "Wpisz Model", autocomplete = "off" })
+            @Html.TextBox("NrRejestracyjny", null, new { @class = "form-control", placeholder = "Wpisz numer rejestracyjny", autocomplete = "off" })
+            @Html.TextBox("NrVin", null, new { @class = "form-control", placeholder = "Wpisz numer VIN", autocomplete = "off" })
+            <button type="submit" class="find-button">Szukaj</button>
+        }
+    </div>
+
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Create">Dodaj samochód</a>
+        </div>
+    </div>
+
+    @if (ViewBag.NoCarsMessage != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.NoCarsMessage
+        </div>
+    }
+    else
+    {
+        <div class="table-form-full">
+            <table class="table">
+
+                <tr>
+                    <th>
+                        Numer
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Marka)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Model)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nr_rejestracyjny)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VIN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Rok)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Miesiac)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Moc)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Paliwo)
+                    </th>
+                    <th>Akcje</th>
+                </tr>
+
+                @{
+                    int numerPorzadkowy = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @numerPorzadkowy
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Marka)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Model)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nr_rejestracyjny)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VIN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rok)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Miesiac)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Moc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Paliwo)
+                        </td>
+                        <td>
+                            <div class="buttons">
+                                <div class="add">
+                                    @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_samochod }, new { @class = "btn btn-primary btn-block" })
+                                </div>
+                                <div class="delete">
+                                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id_samochod }, new { @class = "btn btn-danger btn-block" })
+                                </div>
+                                @* @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) | *@
+                            </div>
+                        </td>
+                    </tr>
+                    numerPorzadkowy++;
+                }
+            </table>
+        </div>
+    }
+</div>
+

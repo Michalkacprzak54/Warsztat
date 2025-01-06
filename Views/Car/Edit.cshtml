@@ -1,0 +1,73 @@
+﻿@model WarsztatMVC.Models.CarModel
+
+@{
+    ViewData["Title"] = "Edycja samochodu";
+}
+
+<div class="edit-a-form-full">
+    <div class="edit-a-form">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @* <label asp-for="Id_samochod" class="control-label"></label> *@
+                <input asp-for="Id_samochod" class="form-control" hidden />
+                @* <span asp-validation-for="Id_samochod" class="text-danger"></span> *@
+            </div>
+            <div class="form-group">
+                <label asp-for="Marka" class="control-label"></label>
+                <input asp-for="Marka" class="form-control" />
+                <span asp-validation-for="Marka" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nr_rejestracyjny" class="control-label"></label>
+                <input asp-for="Nr_rejestracyjny" class="form-control" />
+                <span asp-validation-for="Nr_rejestracyjny" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VIN" class="control-label"></label>
+                <input asp-for="VIN" class="form-control" />
+                <span asp-validation-for="VIN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rok" class="control-label"></label>
+                <input asp-for="Rok" class="form-control" />
+                <span asp-validation-for="Rok" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Miesiac" class="control-label"></label>
+                <input asp-for="Miesiac" class="form-control" />
+                <span asp-validation-for="Miesiac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Moc" class="control-label"></label>
+                <input asp-for="Moc" class="form-control" />
+                <span asp-validation-for="Moc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Paliwo" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Paliwo, new SelectList(ViewBag.FuelTypes), "Wybierz typ paliwa", new { @class = "form-control" })
+                <span asp-validation-for="Paliwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+    <div class="button-free">
+        <div class="button-back">
+            <a asp-action="Index">Powrót do listy samochodów</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

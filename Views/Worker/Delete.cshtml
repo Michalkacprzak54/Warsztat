@@ -1,0 +1,87 @@
+﻿@model WarsztatMVC.Models.WorkerModel
+
+@{
+    ViewData["Title"] = "Usuń pracownika";
+}
+
+@* @if (!string.IsNullOrEmpty(ViewBag.WorkerSuccess))
+{
+    <div class="alert-green">
+        @ViewBag.WorkerSuccess
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.WorkerError))
+{
+    <div class="alert-red">
+        @ViewBag.WorkerError
+    </div>
+} *@
+
+<div class="delete-full">
+    <h3>Czy na pewno chcesz usunąć tego tego pracownika?</h3>
+    <div class="info-full">
+        <table class="info">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Id_pracownik)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pracownik_imie)
+                </th>
+                <td>
+                        @Html.DisplayFor(model => model.Pracownik_imie)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pracownik_nazwisko)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Pracownik_nazwisko)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Pracownik_nr_telefonu)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Pracownik_nr_telefonu)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    E-mail
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Pracownik_email)
+                </td>
+            </tr>
+            @*<tr>
+                <th>
+                    Hasło
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Pracownik_haslo)
+                </td>
+            </tr>*@
+        </table>
+
+
+        <div class="delete-form">
+            <form asp-action="Delete">
+                <input type="submit" value="Usuń" class="btn btn-danger" />
+            </form>
+        </div>
+        <div class="button-free">
+            <div class="button-back">
+                <a asp-action="Index">Powrót</a>
+            </div>
+        </div>
+    </div>
+</div>

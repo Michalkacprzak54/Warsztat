@@ -1,0 +1,94 @@
+﻿@model IEnumerable<WarsztatMVC.Models.PartModel>
+
+@{
+    ViewData["Title"] = "Części";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.PartSuccess))
+{
+    <div class="alert-green">
+        @ViewBag.PartSuccess
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.PartError))
+{
+    <div class="alert-red">
+        @ViewBag.PartError
+    </div>
+}
+<div class="table-form">
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Create">Dodaj</a>
+        </div>
+    </div>
+    <div class="table-form-full">
+        <table class="table">
+
+            <tr>
+                <th>
+                    Numer
+                </th>
+                <th>
+                    Czynność
+                </th>
+                <th>
+                    Część
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producent)
+                </th>
+                <th>
+                    Numer części
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    Akcje
+                </th>
+            </tr>
+            @{
+                int numerPorzadkowy = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @numerPorzadkowy
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Czynnosc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Czesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nr_czesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cena_netto)
+                    </td>
+                    <td>
+                        <div class="buttons">
+                            <div class="add">
+                                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_czesc })
+                            </div>
+                            @if (!item.IsLinkedToRepair ?? false)
+                            {
+                                <div class="delete">
+                                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id_czesc })
+                                </div>
+                            }
+                        </div>
+                    </td>
+                </tr>
+                numerPorzadkowy++;
+            }
+        </table>
+    </div>
+</div>

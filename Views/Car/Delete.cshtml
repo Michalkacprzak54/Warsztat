@@ -1,0 +1,59 @@
+﻿@model WarsztatMVC.Models.CarModel
+
+@{
+    ViewData["Title"] = "Usuń samochód";
+}
+
+<div class="delete-full">
+    <h3>Czy na pewno chcesz usunąć ten samochód?</h3>
+    <div class="info-full">
+        <table class="info">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id_samochod)</th>
+                <td>@Html.DisplayFor(model => model.Id_samochod)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Marka)</th>
+                <td>@Html.DisplayFor(model => model.Marka)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Model)</th>
+                <td>@Html.DisplayFor(model => model.Model)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nr_rejestracyjny)</th>
+                <td>@Html.DisplayFor(model => model.Nr_rejestracyjny)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.VIN)</th>
+                <td>@Html.DisplayFor(model => model.VIN)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Rok)</th>
+                <td>@Html.DisplayFor(model => model.Rok)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Miesiac)</th>
+                <td>@Html.DisplayFor(model => model.Miesiac)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Moc)</th>
+                <td>@Html.DisplayFor(model => model.Moc)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Paliwo)</th>
+                <td>@Html.DisplayFor(model => model.Paliwo)</td>
+            </tr>
+        </table>
+        <div class="delete-form">
+            <form asp-action="Delete">
+                <input type="submit" value="Usuń" class="btn btn-danger" />
+            </form>
+        </div>
+        <div class="button-free">
+            <div class="button-back">
+                <a asp-action="Index">Powrót do listy samochdów</a>
+            </div>
+        </div>
+    </div>
+</div>

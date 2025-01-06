@@ -1,0 +1,127 @@
+﻿@model IEnumerable<WarsztatMVC.Models.CompanyModel>
+
+@{
+    ViewData["Title"] = "Firmy";
+}
+
+@if (TempData.ContainsKey("SuccessFirma"))
+{
+    <div class="alert-green">
+        @TempData["SuccessFirma"]
+    </div>
+}
+
+@if (TempData.ContainsKey("ErrorFirma"))
+{
+    <div class="alert-red">
+        @TempData["ErrorFirma"]
+    </div>
+}
+<div class="table-form">
+    <div class="find">
+        @using (Html.BeginForm("Index", "Company", FormMethod.Get))
+        {
+                @* <label>Wpisz numer telefonu</label> *@
+                @Html.TextBox("Nazwa", null, new { @class = "form-control", placeholder = "Wpisz nazwę firmy", autocomplete = "off" })
+                @Html.TextBox("nip", null, new { @class = "form-control", placeholder = "Wpisz NIP", autocomplete = "off" })
+                @Html.TextBox("regon", null, new { @class = "form-control", placeholder = "Wpisz REGON", autocomplete = "off" })
+                <button type="submit" class="find-button">Szukaj</button>
+        }
+    </div>
+
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Create">Dodaj firmę</a>
+        </div>
+    </div>
+
+    @if (ViewBag.NoCompaniesMessage != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.NoCompaniesMessage
+        </div>
+    }
+    else
+    {
+        <div class="table-form-full">
+            <table class="table">
+
+                <tr>
+                    <th>
+                        Numer
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nazwa_firma)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.miasto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.kod_pocztowy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ulica)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.numer_domu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.numer_lokalu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nip)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.regon)
+                    </th>
+                    <th>Akcje</th>
+                    @{
+                        int numerPorzadkowy = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                                @numerPorzadkowy
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.nazwa_firma)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.miasto)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.kod_pocztowy)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.ulica)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.numer_domu)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.numer_lokalu)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.nip)
+                        </td>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.regon)
+                        </td>
+                        <td>
+                            <div class="buttons">
+                                <div class="add">
+                                        @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_frima }, new { @class = "btn btn-primary btn-block " })
+                                </div>
+                                <div class="delete">
+                                        @Html.ActionLink("Usuń", "Delete", new { id = item.Id_frima }, new { @class = "btn btn-danger btn-block" })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                        numerPorzadkowy++;
+                    }
+            </table>
+        </div>
+    }
+</div>

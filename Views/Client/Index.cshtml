@@ -1,0 +1,99 @@
+﻿@model IEnumerable<WarsztatMVC.Models.ClientModel>
+
+@{
+    ViewData["Title"] = "Klienci";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert-green">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert-red">
+        @ViewBag.ErrorMessage
+    </div>
+}
+<div class="table-form">
+    <div class="find">
+        @using (Html.BeginForm("Index", "Client", FormMethod.Get))
+        {
+            @* <label>Wpisz numer telefonu</label> *@
+            @Html.TextBox("Imie", null, new { @class = "form-control", placeholder = "Wpisz imię", autocomplete = "off" })
+            @Html.TextBox("Nazwisko", null, new { @class = "form-control", placeholder = "Wpisz nazwisko", autocomplete = "off" })
+            @Html.TextBox("nrTelefonu", null, new { @class = "form-control", placeholder = "Wpisz numer telefonu", autocomplete = "off" })
+            <button type="submit" class="find-button">Szukaj</button>
+        }
+    </div>
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Create">Dodaj klienta</a>
+        </div>
+    </div>
+
+    @if (ViewBag.NoClientsMessage != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.NoClientsMessage
+        </div>
+    }
+    else
+    {
+        <div class="table-form-full">
+            <table class="table">
+
+                <tr>
+                    <th>
+                        Numer
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Imie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nazwisko)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Numer_telefonu)
+                    </th>
+                    <th>Akcje</th>
+                </tr>
+
+                @{
+                    int numerPorzadkowy = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @numerPorzadkowy
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Imie)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nazwisko)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Numer_telefonu)
+                        </td>
+                        <td>
+                            <div class="buttons">
+                                <div class="add">
+                                    @Html.ActionLink("Edytuj", "Edit", new { id = item.Id_klient }, new { @class = "btn btn-primary btn-block" })
+                                </div>
+                                <div class="delete">
+                                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id_klient }, new { @class = "btn btn-danger btn-block" })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    numerPorzadkowy++;
+                }
+
+            </table>
+        </div>
+    }
+</div>

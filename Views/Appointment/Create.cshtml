@@ -1,0 +1,124 @@
+﻿@using WarsztatMVC.Models;
+@model AppointmentModel
+
+
+@{
+    ViewData["Title"] = "Dodaj wizytę";
+}
+
+<div class="create-a-form-full">
+    <div class="create-a-form">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VisitViewModel.First().Nr_rejestracyjny" class="control-label"></label>
+                <input type="text" id="searchNr_rejestracyjny" placeholder="Wyszukaj samochód" class="form-control" />
+                @Html.DropDownListFor(model => model.VisitViewModel.First().Nr_rejestracyjny, new SelectList(Model.CarViewModel, "Nr_rejestracyjny", "MarkaModelNr_rejestracyjny"), "Wybierz samochód", new { @class = "form-control" })
+                <span asp-validation-for="VisitViewModel.First().Nr_rejestracyjny" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisitViewModel.First().Numer_telefonu" class="control-label"></label>
+                <input type="text" id="searchNumer_telefonu" placeholder="Wyszukaj klienta" class="form-control" />
+                @Html.DropDownListFor(model => model.VisitViewModel.First().Numer_telefonu, new SelectList(Model.ClientViewModel, "Numer_telefonu", "ImieNazwiskoNr_tel"), "Wybierz klienta", new { @class = "form-control" })
+                <span asp-validation-for="VisitViewModel.First().Numer_telefonu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisitViewModel.First().nip" class="control-label"></label>
+                <input type="text" id="searchNIP" placeholder="Wyszukaj firmę" class="form-control" />
+                @Html.DropDownListFor(model => model.VisitViewModel.First().nip, new SelectList(Model.CompanyViewModel, "nip", "NazwaNipRegon"), "Wybierz Firmę", new { @class = "form-control" })
+                <span asp-validation-for="VisitViewModel.First().nip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisitViewModel.First().Przebieg_start" class="control-label"></label>
+                <input asp-for="VisitViewModel.First().Przebieg_start" class="form-control" value="" />
+                <span asp-validation-for="VisitViewModel.First().Przebieg_start" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisitViewModel.First().Data_start" class="control-label"></label>
+                <input asp-for="VisitViewModel.First().Data_start" class="form-control" value="" />
+                <span asp-validation-for="VisitViewModel.First().Data_start" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisitViewModel.First().Paliwo_start" class="control-label"></label>
+                <input asp-for="VisitViewModel.First().Paliwo_start" class="form-control" type="number" value="" step="0.01" />
+                <span asp-validation-for="VisitViewModel.First().Paliwo_start" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisitViewModel.First().Opis_klienta" class="control-label"></label>
+                <input asp-for="VisitViewModel.First().Opis_klienta" class="form-control" value="" />
+                <span asp-validation-for="VisitViewModel.First().Opis_klienta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" id="submitButton" />
+            </div>
+        </form>
+    </div>
+    <div class="button-free">
+        <div class="button-back">
+            <a asp-action="Index">Powrót do listy wizyt</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var nrRejestracyjnySelect = document.getElementById("Nr_rejestracyjny");
+        var searchInputNrRejestracyjny = document.getElementById("searchNr_rejestracyjny");
+
+        searchInputNrRejestracyjny.addEventListener("input", function () {
+            var searchText = searchInputNrRejestracyjny.value.toLowerCase();
+
+            for (var i = 0; i < nrRejestracyjnySelect.options.length; i++) {
+                var option = nrRejestracyjnySelect.options[i];
+                var optionText = option.text.toLowerCase();
+
+                if (optionText.includes(searchText)) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+
+        var numerTelefonuSelect = document.getElementById("Numer_telefonu");
+        var searchInputNumerTelefonu = document.getElementById("searchNumer_telefonu");
+
+        searchInputNumerTelefonu.addEventListener("input", function () {
+            var searchText = searchInputNumerTelefonu.value.toLowerCase();
+
+            for (var i = 0; i < numerTelefonuSelect.options.length; i++) {
+                var option = numerTelefonuSelect.options[i];
+                var optionText = option.text.toLowerCase();
+
+                if (optionText.includes(searchText)) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+
+        var nipSelect = document.getElementById("nip");
+        var searchInputNIP = document.getElementById("searchNIP");
+
+        searchInputNIP.addEventListener("input", function () {
+            var searchText = searchInputNIP.value.toLowerCase();
+
+            for (var i = 0; i < nipSelect.options.length; i++) {
+                var option = nipSelect.options[i];
+                var optionText = option.text.toLowerCase();
+
+                if (optionText.includes(searchText)) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,70 @@
+﻿@model WarsztatMVC.Models.ClientModel
+
+@{
+    ViewData["Title"] = "Usuń klienta";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert-green">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert-red">
+        @ViewBag.ErrorMessage
+    </div>
+}
+<div class="delete-full">
+    <h3>Czy na pewno chcesz usunąć tego klienta?</h3>
+    <div class="info-full">
+        <table class="info">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id_klient)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Id_klient)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imie)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Imie)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nazwisko)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Nazwisko)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Numer_telefonu)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Numer_telefonu)
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="delete-form">
+            <form asp-action="Delete">
+                <input type="submit" value="Usuń" class="btn btn-danger" />
+            </form>
+        </div>
+        <div class="button-free">
+            <div class="button-back">
+                <a asp-action="Index">Powrót do listy klientów</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model WarsztatMVC.Models.CompanyModel
+
+@{
+    ViewData["Title"] = "Dodaj firmę";
+}
+
+<div class="create-a-form-full">
+    <div class="create-a-form">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="nazwa_firma" class="control-label"></label>
+                <input asp-for="nazwa_firma" class="form-control" />
+                <span asp-validation-for="nazwa_firma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="miasto" class="control-label"></label>
+                <input asp-for="miasto" class="form-control" />
+                <span asp-validation-for="miasto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="kod_pocztowy" class="control-label"></label>
+                <input asp-for="kod_pocztowy" class="form-control" />
+                <span asp-validation-for="kod_pocztowy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ulica" class="control-label"></label>
+                <input asp-for="ulica" class="form-control" />
+                <span asp-validation-for="ulica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numer_domu" class="control-label"></label>
+                <input asp-for="numer_domu" class="form-control" />
+                <span asp-validation-for="numer_domu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="numer_lokalu" class="control-label"></label>
+                <input asp-for="numer_lokalu" class="form-control" />
+                <span asp-validation-for="numer_lokalu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nip" class="control-label"></label>
+                <input asp-for="nip" class="form-control" />
+                <span asp-validation-for="nip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="regon" class="control-label"></label>
+                <input asp-for="regon" class="form-control" />
+                <span asp-validation-for="regon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+    <div class="button-free">
+        <div class="button-back">
+            <a asp-action="Index">Powrót do listy firm</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model WarsztatMVC.Models.WorkerLoginModel
+
+@{
+    ViewData["Title"] = "Logowanie";
+    Layout = null;
+}
+
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WarsztatMVC.styles.css" asp-append-version="true" />
+</head>
+
+<div class="login-form">
+    <form enctype="multipart/form-data" asp-controller="WorkerLogin" asp-action="Index" method="post">
+        <label asp-for="@Model.email">E-mail</label>
+        <input asp-for="@Model.email" />
+        <span class="field-validation-valid text-danger" asp-validation-for="@Model.email"></span>
+
+        <label asp-for="@Model.password">Hasło</label>
+        <input asp-for="@Model.password" />
+        <span class="field-validation-valid text-danger" asp-validation-for="@Model.password"></span>
+
+        <button type="submit">Zaloguj się</button>
+
+        @if (TempData["WorkerLogin"] != null)
+        {
+            <p>@TempData["WorkerLogin"]</p>
+        }
+    </form>
+</div>
+

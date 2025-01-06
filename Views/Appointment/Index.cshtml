@@ -1,0 +1,187 @@
+﻿@using WarsztatMVC.Models;
+@model AppointmentModel
+
+@{
+    ViewData["Title"] = "Wizyty";
+}
+
+
+
+@if (!string.IsNullOrEmpty(ViewBag.AppointmentSuccess))
+{
+    <div class="alert-green">
+        @ViewBag.AppointmentSuccess
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.AppointmentError))
+{
+    <div class="alert-red">
+        @ViewBag.AppointmentError
+    </div>
+
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.RepairSuccess))
+{
+    <div class="alert-green">
+        @ViewBag.RepairSuccess
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.RepairError))
+{
+    <div class="alert-red">
+        @ViewBag.RepairError
+    </div>
+}
+
+<div class="table-form">
+    <div class="find-2">
+        @using (Html.BeginForm("Index", "Appointment", FormMethod.Get))
+        {
+            <label>Filtruj wizyty:</label>
+            @Html.DropDownList("czyZakonczona", new SelectList(new List<SelectListItem>
+        {
+        new SelectListItem { Text = "Wszystkie", Value = "" },
+        new SelectListItem { Text = "Zakończone", Value = "true" },
+        new SelectListItem { Text = "W toku", Value = "false" }
+        }, "Value", "Text"), new { @class = "form-control" })
+
+            <label>Filtruj po dacie rozpoczęcia:</label>
+            @Html.TextBox("dataRozpoczecia", null, new { @class = "form-control datepicker", placeholder = "Wybierz datę", autocomplete = "off" })
+
+            <button type="submit" class="btn btn-primary">Filtruj</button>
+        }
+    </div>
+    <div class="button-free">
+        <div class="button-add">
+            <a asp-action="Create">Dodaj wizytę</a>
+        </div>
+    </div>
+    @if (ViewBag.NoVisitsMessage != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.NoVisitsMessage
+        </div>
+    }
+    else
+    {
+        <div class="table-form-full-2">
+            <table class="table">
+                <tr>
+                    <th>
+                        Numer
+                    </th>
+                    <th>
+                        Samochód
+                    </th>
+                    <th>
+                        Numer rejestracyjny
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisitViewModel.First().Klient)
+                    </th>
+                    <th>
+                        Numer telefonu
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisitViewModel.First().Firma)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisitViewModel.First().Pracownik)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisitViewModel.First().Data_start)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisitViewModel.First().Data_koniec)
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>Akcje</th>
+                </tr>
+                @{
+                    int numerPorzadkowy = 1;
+                }
+                @foreach (var item in Model.VisitViewModel)
+                {
+                    <tr>
+                        <td>
+                            @numerPorzadkowy
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Samochod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nr_rejestracyjny)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Klient)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Numer_telefonu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Firma)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pracownik)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data_start)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data_koniec)
+                        <td>
+                                @if (item.Czy_zakonczona.GetValueOrDefault())
+                                {
+                                    <text>Zakończona</text>
+                                }
+                                else
+                                {
+                                    <text>W toku</text>
+                                }
+                        </td>
+                        <td>
+                            <div class="buttons">
+                                <div class="details">
+                                        @Html.ActionLink("Szczegóły", "Details", new { id = item.Id_visit }, new { @class = "btn btn-primary btn-block" })
+                                </div>
+                                    @if (!item.Czy_zakonczona.GetValueOrDefault())
+                                    {
+                                        <div class="add">
+                                                @Html.ActionLink("Dodaj naprawę", "Create", "Repair", new { id = item.Id_visit }, new { @class = "btn btn-primary btn-block" })
+                                        </div>
+                                        <div class="end">
+                                                @Html.ActionLink("Zakończ wizytę", "EndVisit", new { id = item.Id_visit }, new { @class = "btn btn-primary btn-block" })
+                                        </div>
+                                        <div class="edit">
+                                                @Html.ActionLink("Edytuj wizytę", "Edit", new { id = item.Id_visit }, new { @class = "btn btn-primary btn-block" })
+                                        </div>
+                                    }
+                            </div>
+                        </td>
+                    </tr>
+                    numerPorzadkowy++;
+                }
+            </table>
+        </div>
+    }
+</div>
+
+
+@section scripts {
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+}
+
+
