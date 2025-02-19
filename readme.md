@@ -40,5 +40,3 @@ This project was developed as part of a **student group collaboration**. Each te
 - **Database:** MSSQL  
 - **Other Tools:** Git  
 
-## 📌 Project Status  
-The project was submitted as part of a **semester evaluation** at the university. It is **fully completed** but has not been deployed online yet. However, it can be run **locally**.  
